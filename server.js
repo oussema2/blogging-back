@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+const teacherRoutes = require("./Routes/TeacherRoutes");
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
@@ -54,6 +55,9 @@ connection.once("open", function () {
 app.get("/index", function (req, res) {
   res.send("running");
 });
+app.use("/images", express.static("./teachersImages"));
+
+app.use("/teacher", teacherRoutes);
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
 });
