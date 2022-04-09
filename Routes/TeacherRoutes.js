@@ -1,6 +1,6 @@
 const teachersRouter = require("express").Router();
 const TeachersController = require("../Controllers/TeachersController");
-const imageUpload = require("../multer/fileUpload").uploadFile;
+const imageUpload = require("../multer/fileUpload").userStorage;
 
 teachersRouter
   .route("/auth/register")

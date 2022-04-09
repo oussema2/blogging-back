@@ -38,7 +38,6 @@ exports.login = (req, res) => {
         message: e,
       });
     }
-    console.log(teacher);
     if (!teacher) {
       res.send({
         status: 400,
@@ -61,7 +60,6 @@ exports.login = (req, res) => {
 
 exports.getTeacherById = (req, res) => {
   const id = req.params.id;
-  console.log(id);
   Teacher.findById(id, (err, teacher) => {
     if (err) {
       res.status(400).send({

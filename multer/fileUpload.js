@@ -1,6 +1,10 @@
 const multer = require("multer");
-const storageFile = require("./fileStorage").fileStorage;
+const userStorageFile = require("./fileStorage").UserfileStorage;
+const articleStorage = require("./fileStorage").ArticlefileStorage;
 
-exports.uploadFile = multer({
-  storage: storageFile,
+exports.userStorage = multer({
+  storage: userStorageFile,
+});
+exports.articleStorage = multer({
+  storage: articleStorage,
 });
