@@ -3,8 +3,11 @@ const Teacher = require("../Schemas/Teacher");
 
 exports.addArticle = (req, res) => {
   const body = req.body;
-  console.log(req);
+  const date = new Date(body.articleDate);
+  console.log(date);
   const article = new Article(body);
+  article["articleDate"] = date;
+  article["topics"] = body.topics.split(",");
   article.save((err, article) => {
     if (err) {
       res.send({
@@ -52,6 +55,44 @@ exports.getArticles = (req, res) => {
             likes: resu[i].likes,
             dislikes: resu[i].dislikes,
             articleImage: resu[i].articleImage,
+            articleDate: resu[i].articleDate,
+            topics: resu[i].topics,
+          },
+          teacher: {
+            _id: te._id,
+            fullName: te.fullName,
+            profilePicture: te.profilePicture,
+          },
+        };
+        data.push(obj);
+
+        if (i === resu.length - 1) {
+          res.send({
+            articles: data,
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.getArticlesByTopic = (req, res) => {
+  const topic = req.params.topic;
+  var data = [];
+  Article.find({ topics: topic }, (err, resu) => {
+    for (let i = 0; i < resu.length; i++) {
+      Teacher.findById(resu[i].userId, (err, te) => {
+        const obj = {
+          article: {
+            _id: resu[i]._id,
+            userId: resu[i].userId,
+            title: resu[i].title,
+            articleBody: resu[i].articleBody,
+            likes: resu[i].likes,
+            dislikes: resu[i].dislikes,
+            articleImage: resu[i].articleImage,
+            articleDate: resu[i].articleDate,
+            topics: resu[i].topics,
           },
           teacher: {
             _id: te._id,

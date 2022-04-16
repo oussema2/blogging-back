@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 4000;
 const teacherRoutes = require("./Routes/TeacherRoutes");
 const articleRoutes = require("./Routes/ArticleRoutes");
+const topicRouter = require("./Routes/TopicRoutes");
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
@@ -56,6 +57,7 @@ connection.once("open", function () {
 
 app.use("/teacherImages", express.static("./teachersImages"));
 app.use("/articleImages", express.static("./articleImages"));
+app.use("/topic", topicRouter);
 
 app.use("/teacher", teacherRoutes);
 app.use("/article", articleRoutes);

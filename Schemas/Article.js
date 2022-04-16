@@ -26,6 +26,13 @@ const ArticleSchema = new Schema({
   articleImage: {
     type: String,
   },
+  articleDate: {
+    type: Date,
+  },
+  topics: {
+    type: Array,
+    required: true,
+  },
 });
 
 const Article = mongoose.model("Article", ArticleSchema);

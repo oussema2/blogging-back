@@ -12,5 +12,7 @@ articleRouter.route("/getArticles").get(ArticleController.getArticles);
 articleRouter
   .route("/getArticleById/:id")
   .get(ArticleController.getArticleById);
-
+articleRouter
+  .route("/getArticlesByTopic/:topic")
+  .get(ArticleController.getArticlesByTopic);
 module.exports = articleRouter;
