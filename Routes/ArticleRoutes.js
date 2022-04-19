@@ -15,4 +15,11 @@ articleRouter
 articleRouter
   .route("/getArticlesByTopic/:topic")
   .get(ArticleController.getArticlesByTopic);
+articleRouter
+  .route("/getArticlesByUser/:id")
+  .get(ArticleController.getArticlesByUser);
+articleRouter
+  .route("/getArticlesByUserAndTopics/:id/:topic")
+  .get(ArticleController.getArticlesByUserAndTopics);
+
 module.exports = articleRouter;

@@ -122,3 +122,52 @@ exports.getArticleById = (req, res) => {
     });
   });
 };
+
+exports.getArticlesByUser = (req, res) => {
+  const userId = req.params.id;
+  Teacher.findById(userId, (err, teacher) => {
+    if (err) {
+      res.send({
+        status: 400,
+        error: err,
+      });
+    }
+    Article.find({ userId: userId }, (errx, articles) => {
+      if (errx) {
+        res.send({
+          status: 400,
+        });
+      }
+      res.send({
+        status: 200,
+        articles: articles,
+        teacher: teacher,
+      });
+    });
+  });
+};
+
+exports.getArticlesByUserAndTopics = (req, res) => {
+  const userId = req.params.id;
+  const topic = req.params.topic;
+  Teacher.findById(userId, (err, teacher) => {
+    if (err) {
+      res.send({
+        status: 400,
+        error: err,
+      });
+    }
+    Article.find({ userId: userId, topics: topic }, (errx, articles) => {
+      if (errx) {
+        res.send({
+          status: 400,
+        });
+      }
+      res.send({
+        status: 200,
+        articles: articles,
+        teacher: teacher,
+      });
+    });
+  });
+};
