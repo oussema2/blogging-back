@@ -12,7 +12,7 @@ const ArticleSchema = new Schema({
     required: true,
   },
   articleBody: {
-    type: String,
+    type: Schema.Types.String,
     required: true,
   },
   likes: {
