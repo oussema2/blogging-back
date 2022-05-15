@@ -10,4 +10,3 @@ TopicSchema.index({ "$**": "text" });
 
 const Topic = mongoose.model("Topic", TopicSchema);
 module.exports = Topic;
-//d
