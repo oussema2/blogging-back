@@ -46,6 +46,7 @@ exports.getArticles = (req, res) => {
   Article.find((err, resu) => {
     for (let i = 0; i < resu.length; i++) {
       Teacher.findById(resu[i].userId, (err, te) => {
+        console.log(te._id);
         const obj = {
           article: {
             _id: resu[i]._id,
@@ -58,6 +59,7 @@ exports.getArticles = (req, res) => {
             articleDate: resu[i].articleDate,
             topics: resu[i].topics,
           },
+
           teacher: {
             _id: te._id,
             fullName: te.fullName,
